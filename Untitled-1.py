@@ -1,8 +1,8 @@
 from pygame import*
 
 class GameSprite(sprite.Sprite):
-    def __init__(self, player_image, player_x, player_y, wight, height, player_speed):
-        super().__init__(self)
+    def __init__(self, player_image, player_x, player_y, player_speed, wight, height):
+        sprite.Sprite.__init__(self)
         self.image = transform.scale(image.load(player_image),(wight,height))
         self.speed = player_speed
 
@@ -45,11 +45,15 @@ finish = False
 clock = time.Clock()
 FPS = 60
 
+ball = GameSprite('мяч.png',200,200,4,50,50)
+
 while game:
     for e in event.get():
         if e.type == QUIT:
             game = False
     if finish != True:
             window.fill(back)
+            ball.reset()
+
             display.update()
             clock.tick(FPS)
