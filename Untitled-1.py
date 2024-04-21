@@ -16,7 +16,7 @@ class GameSprite(sprite.Sprite):
 
 
 class Player(GameSprite):
-    def update.r(self):
+    def update_r(self):
         
         keys = key.get_pressed()
 
@@ -28,32 +28,28 @@ class Player(GameSprite):
         if keys[K_DOWN] and self.rect.y < win_height - 80:
             self.rect.y += self.speed
 
-            def update.l(self):
-        
-        keys = key.get_pressed()
+            def update_l(self):
+                if keys[K_w] and self.rect.y >5:
+                    self.rect.y -= self.speed
 
-
-
-        if keys[K_w] and self.rect.y >5:
-            self.rect.y -= self.speed
-
-        if keys[K_s] and self.rect.y < win_height - 80:
-            self.rect.y += self.speed
+                if keys[K_s] and self.rect.y < win_height - 80:
+                    self.rect.y += self.speed
 
 back = (200, 255, 255)
 win_width = 600
 win_height = 500
 window =  display.set_mode((win_width, win_height))
-window_fill(back)
+window.fill(back)
 game = True
 finish = False
+clock = time.Clock()
 FPS = 60
 
 while game:
-    for i in event.get():
+    for e in event.get():
         if e.type == QUIT:
             game = False
     if finish != True:
             window.fill(back)
-        display.update()
-        clock.tick(FPS)
+            display.update()
+            clock.tick(FPS)
